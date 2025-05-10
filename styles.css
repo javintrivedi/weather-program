@@ -1,21 +1,63 @@
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
     background-image: url("wallpaper.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
+    background-position: fixed;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: background-color 0.5s ease-in-out, background-image 0.5s ease-in-out;
 }
 
-.weatherForm{
+/* Weather background classes */
+.bg-thunderstorm {
+    background-color: #4a4a4a;
+    background-image: linear-gradient(135deg, #434343 0%, #000000 100%);
+}
+
+.bg-rain {
+    background-color: #5f9ea0;
+    background-image: linear-gradient(135deg, #667db6 0%, #0082c8 50%, #0082c8 50%, #667db6 100%);
+}
+
+.bg-snow {
+    background-color: #e0f7fa;
+    background-image: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+}
+
+.bg-fog {
+    background-color: #d7d2cc;
+    background-image: linear-gradient(135deg, #304352 0%, #d7d2cc 100%);
+}
+
+.bg-clear {
+    background-color: #fceabb;
+    background-image: linear-gradient(135deg, #f8b500 0%, #fceabb 100%);
+}
+
+.bg-clouds {
+    background-color: #bdc3c7;
+    background-image: linear-gradient(135deg, #2c3e50 0%, #bdc3c7 100%);
+}
+
+.bg-default {
+    background-image: url("wallpaper.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: fixed;
+}
+
+.weatherForm {
     margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
-.cityInput{
+.cityInput {
     padding: 10px;
     font-size: 2rem;
     font-weight: bold;
@@ -25,7 +67,7 @@ body{
     width: 300px;
 }
 
-button[type="submit"]{
+button[type="submit"] {
     padding: 10px 20px;
     font-weight: bold;
     font-size: 2rem;
@@ -35,59 +77,146 @@ button[type="submit"]{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 10px;
 }
 
-button[type="submit"]:hover{
-    background-color:  rgb(11, 100, 38);
+button[type="submit"]:hover {
+    background-color: rgb(11, 100, 38);
 }
 
-.card{
+.unitToggleLabel {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 10px;
+    user-select: none;
+}
+
+#unitToggle {
+    width: 40px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.loading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(11, 120, 69);
+    margin: 20px;
+}
+
+.card {
     padding: 50px;
-    backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 2px 2px 5px hsl(0, 0%, 0%, 0.5);
     min-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    animation-fill-mode: forwards;
 }
 
-h1{
+h1 {
     font-size: 3.5rem;
     margin-top: 0;
     margin-bottom: 25px;
-    font-style: bold;
+    font-weight: bold;
 }
 
-p{
+p {
     font-size: 1.5rem;
     margin: 5px 0;
 }
 
-.cityDisplay, .tempDisplay{
+.cityDisplay,
+.tempDisplay {
     font-size: 3.5rem;
     font-weight: bold;
     color: black;
     margin-bottom: 25px;
 }
 
-.humidityDisplay{
-    font-weight : bold;
-    margin-bottom : 25px;
+.humidityDisplay {
+    font-weight: bold;
+    margin-bottom: 25px;
 }
 
-.descDisplay{
+.descDisplay {
     font-size: 2rem;
     font-style: italic;
     font-weight: bold;
 }
 
-.weatherEmoji{
+.weatherEmoji {
     margin: 0;
     font-size: 7.5rem;
 }
-.errorDisplay{
+
+.windDisplay,
+.sunriseDisplay,
+.sunsetDisplay {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.errorDisplay {
     font-size: 1.5rem;
     font-weight: initial;
     color: hsla(0, 0%, 0%, 0.553);
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .cityInput {
+        width: 90%;
+        font-size: 1.5rem;
+    }
+
+    button[type="submit"] {
+        font-size: 1.5rem;
+        padding: 8px 16px;
+    }
+
+    .unitToggleLabel {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        padding: 30px 20px;
+        min-width: 90%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .tempDisplay,
+    .cityDisplay {
+        font-size: 2.5rem;
+    }
+
+    .descDisplay {
+        font-size: 1.5rem;
+    }
+
+    .weatherEmoji {
+        font-size: 5rem;
+    }
 }
