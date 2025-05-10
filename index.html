@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Weather Forecast</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <form class="weatherForm">
-        <input type="text" class="cityInput" placeholder="Enter city">
+        <input type="text" class="cityInput" placeholder="Enter city" aria-label="City name" />
         <button type="submit">Get Weather</button>
+        <label class="unitToggleLabel" for="unitToggle">°C / °F</label>
+        <input type="checkbox" id="unitToggle" aria-label="Toggle temperature unit" />
     </form>
 
-    <div class="card" style="display: none;">
-        
-    </div>
+    <div class="loading" style="display:none;" aria-live="polite" aria-busy="true">Loading...</div>
+
+    <div class="card" style="display: none;" aria-live="polite" aria-atomic="true"></div>
 
     <script src="index.js"></script>
 </body>
